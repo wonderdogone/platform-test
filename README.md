@@ -44,5 +44,8 @@ Cacheing of logged out token are also handles in app memeory but should really b
 
 
 **Additional Info**
+
 TODO refresh tokens should be issued.
+TODO Validate JOSN middleware
+
 
