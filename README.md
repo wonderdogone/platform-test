@@ -4,9 +4,13 @@
 
 This API supports the following endpoints. Requests and responses are **JSON**.
 GET '/users'
+
 DELETE '/users/:id'
+
 POST '/login'
+
 POST '/users/register'
+
 POST '/logout'
 
 Code base is wrriten in Node.js becasue it's performant while allowing for reusable "pieces" of code. Easily updated and familiar with developers.
