@@ -3,6 +3,7 @@
 ## Description
 
 This API supports the following endpoints. Requests and responses are **JSON**.
+
 GET '/users'
 
 DELETE '/users/:id'
@@ -27,7 +28,8 @@ Login requires a valid username and pasword in a request as follows
  "id": 55
 ```
 
-Once logged in the requester will recieve a valid token. (access_token). This token is requred for additinal requests to protected endpoints
+Once logged in the requester will recieve a valid token. (access_token). This token is requred for additinal requests to protected endpoints. Tokens expire in 1 hour.
+
 DELETE '/users/:id'
 
 POST '/users/register'
@@ -42,4 +44,5 @@ Cacheing of logged out token are also handles in app memeory but should really b
 
 
 **Additional Info**
+TODO refresh tokens should be issued.
 
