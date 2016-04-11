@@ -19,6 +19,16 @@ Code base is wrriten in Node.js becasue it's performant while allowing for reusa
 ## Goals
 Keep it simple. Try and stay close to the Node API. Limit dependencies. No tricks
 
+## How to run this app?
+Simple. Grab the source code form this repo then.
+```
+cd platform-test
+npm install
+npm start
+```
+
+In that order and you should have a running app. Most endpoints are protected so remeber to visit '/login' first with valid creds to get a token.
+
 ## Notes
 
 Login requires a valid username and pasword in a request as follows
