@@ -2,41 +2,40 @@
 
 ## Description
 
-Design and implement a RESTful web service to facilitate a user authentication system. The authentication mechanism should be *token based*. Requests and responses should be in **JSON**.
+This API supports the following endpoints. Requests and responses are **JSON**.
+GET '/users'
+DELETE '/users/:id'
+POST '/login'
+POST '/users/register'
+POST '/logout'
 
-## Requirements
+Code base is wrriten in Node.js becasue it's performant while allowing for reusable "pieces" of code. Easily updated and familiar with developers.
 
-**Models**
+## Goals
+Keep it simple. Try and stay close to the Node API. Limit dependencies. No tricks
 
-The **User** model should have the following properties (at minimum):
+## Notes
 
-1. name
-2. email
-3. password
+Login requires a valid username and pasword in a request as follows
+```javascript
+{"name":"Sam",
+ "password":"746952796540762876!@&@%^$!9E038410",
+ "id": 55
+```
 
-You should determine what, *if any*, additional models you will need.
+Once logged in the requester will recieve a valid token. (access_token). This token is requred for additinal requests to protected endpoints
+DELETE '/users/:id'
 
-**Endpoints**
+POST '/users/register'
 
-All of these endpoints should be written from a user's perspective.
+POST '/logout'
 
-1. **User** Registration
-2. Login (*token based*) - should return a token, given *valid* credentials
-3. Logout - logs a user out
-4. Update a **User**'s Information
-5. Delete a **User**
+**NOTE  GET '/users' is unprotected intentially for easy testing in this demo.**
 
-**README**
+## Data
+To make it easier to run this application I have not included a traditional database but rahter handle most of the data manipulation in memory in the DataActions object. This is only for this test and becasue the data is very limited.
+Cacheing of logged out token are also handles in app memeory but should really be independent in a memstore.
 
-Please include a readme file that explains your thinking, how to setup and run the project, and a description of what enhancements you might make if you had more time.
 
 **Additional Info**
-
-- We expect this project to take a few hours to complete
-- You can use Rails/Sinatra, Python, Go, node.js or shiny-new-framework X, as long as you tell us why you chose it and how it was a good fit for the challenge. 
-- Feel free to use whichever database you'd like; we suggest Postgres. 
-- Bonus points for security, specs, etc. 
-- Do as little or as much as you like.
-
-Please fork this repo and commit your code into that fork.  Show your work and process through those commits.
 
