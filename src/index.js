@@ -16,7 +16,7 @@ app.listen(process.env.PORT || config.port, function() {
 
 //Listen for uncaught errors
 process.on('uncaughtException', function (err) {
-  console.log(err);
+  console.error(err.stack);
   //TODO trigger notifications
   process.exit(1);
 });

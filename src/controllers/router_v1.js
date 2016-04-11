@@ -4,7 +4,6 @@
 'use strict';
 //external
 const jwt    = require('jsonwebtoken');
-const Joi = require('joi');
 const express = require('express');
 //internal
 const app = require('../app');

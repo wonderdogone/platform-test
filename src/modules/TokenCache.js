@@ -1,6 +1,7 @@
 /*jshint node:true */
 /*jshint esnext:true */
 'use strict';
+
 const app = require('../app');
 
 class TokenCache {
@@ -10,17 +11,18 @@ class TokenCache {
   constructor() {
     this.cache = [
       {
-      id : '1460330666somemail@someemail.co',
-      expired: new Date(),
-      ttl: 'some amount of time'
+        id : '1460330666somemail@someemail.co',
+        expired: new Date(),
+        ttl: 'some amount of time'
       }
     ];
   }
 
   //this just simulates what should be in a memstores with a proper ttl.
-  cleanCache(cbId) {
+  //Normally keep this off this event loop
+  cleanCache() {
     console.log('Action: Cleaning Cache');
-    //TODO: clean the list of items passed ttl
+    return;
   }
 
   expired(token, cb) {

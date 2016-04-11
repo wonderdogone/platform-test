@@ -14,21 +14,21 @@ module.exports.allUsers = (req, res, next) => {
   users.listUsers((err, data) => {
     if (err) return next(err);
     res.set('Content-Type', 'application/json');
-     res.status(data.statusCode).send(data.users);
+    res.status(data.statusCode).send(data.users);
   });
 };
 
 /** POST Login, returns a new valid token*/
 module.exports.login = (req, res, next) => {
-    users.loginUser(req.body, (err, d) => {
-      if (err) return next(err);
-      res.status(d.statusCode).send(d);
-    });
+  users.loginUser(req.body, (err, d) => {
+    if (err) return next(err);
+    res.status(d.statusCode).send(d);
+  });
 };
 
 /** POST register a new user */
 module.exports.register = (req, res, next) => {
-  tokenCache.expired(res.locals, function(err, feedback) {
+  tokenCache.expired(res.locals, (err, feedback) => {
     if (err) return next(err);
     if (feedback === true) {
       return res.status(400).send('YOu may need a new token');
@@ -38,11 +38,12 @@ module.exports.register = (req, res, next) => {
       res.status(d.statusCode).send(d);
     });
   });
+
 };
 
 /** DELETE remove user */
 module.exports.removeUser = (req, res, next) => {
-  tokenCache.expired(res.locals, function(err, feedback) {
+  tokenCache.expired(res.locals, (err, feedback) => {
     if (err) return next(err);
     if (feedback === true) {
       return res.status(400).send('YOu may need a new token');
@@ -56,10 +57,11 @@ module.exports.removeUser = (req, res, next) => {
   });
 };
 
-/** POST logout user */
+/** POST logout user. Requester must provide valid token on logout.*/
 module.exports.logout = (req, res, next) => {
   users.logout(res.locals, (err, d) => {
     if (err) return next(err);
+    res.app.emit('hash:clean', 'Action: Start Cleaning Cache');
     res.status(200).send(d);
   });
 };
