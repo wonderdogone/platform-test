@@ -29,6 +29,7 @@ module.exports.login = (req, res, next) => {
 /** POST register a new user */
 module.exports.register = (req, res, next) => {
   tokenCache.expired(res.locals, function(err, feedback) {
+    if (err) return next(err);
     if (feedback === true) {
       return res.status(400).send('YOu may need a new token');
     }
@@ -42,6 +43,7 @@ module.exports.register = (req, res, next) => {
 /** DELETE remove user */
 module.exports.removeUser = (req, res, next) => {
   tokenCache.expired(res.locals, function(err, feedback) {
+    if (err) return next(err);
     if (feedback === true) {
       return res.status(400).send('YOu may need a new token');
     }
