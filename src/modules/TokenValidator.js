@@ -4,9 +4,11 @@
 
 const jwt = require('jsonwebtoken');
 const message = require('../utils/messages');
+const tokenCache = require('./tokenCache');
 
 /** validate token middleware */
 module.exports.checkToken = (req, res, next) => {
+
   if (!req.headers.authorization || req.headers.authorization === "") {
     let mes = new message.Unauthorized('Missing Credentials');
     res.set('Content-Type', 'application/json');
@@ -24,8 +26,7 @@ module.exports.checkToken = (req, res, next) => {
     if (err) {
       return res.status(500).send(err);
     } else {
-      let now = Math.floor(Date.now()/1000);
-      let timeToExpire = (decoded.exp - now);
+      res.locals = decoded;
       next();
     }
   });

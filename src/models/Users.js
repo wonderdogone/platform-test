@@ -3,10 +3,12 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const jwt    = require('jsonwebtoken');
 const users =  require('../data/users/users.json');
 const Actions =  require('../modules/DataActions');
-const jwt    = require('jsonwebtoken');
 const message = require('../utils/messages');
+const tokenCache = require('../modules/TokenCache');
+const app = require('../app');
 
 class Users {
   /**
@@ -30,6 +32,7 @@ class Users {
   registerUser(body, cb) {
     const saltRounds = 10;
     let newObj = Object.assign({}, body);
+    //hash pasword for db
     bcrypt.genSalt(saltRounds, (err, salt) => {
       bcrypt.hash(newObj.password, salt, (err, hash) => {
         newObj.password = hash;
@@ -69,7 +72,6 @@ class Users {
         expiresIn: '1h',
         issuer: 'www.webstuff.com'
       }, (token) => {
-        //console.log(token);
         cb(null,
           {
             "statusCode": 200,
@@ -80,6 +82,18 @@ class Users {
           });
       });
     });
+  }
+
+  logout(token, cb) {
+    const watchMe = {
+      id : `${token.iat}${token.email}`,
+      expired: new Date(),
+      ttl: 'some amount of time'
+    };
+
+    tokenCache.cache.push(watchMe);
+    let mes = new message.LogoutSuccess('Goodbye');
+    return cb(null, mes);
   }
 
 }

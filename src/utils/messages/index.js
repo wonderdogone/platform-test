@@ -40,6 +40,24 @@ function Duplicate(message) {
 
 util.inherits(NotFound, Error);
 
+function LogoutSuccess(message) {
+  Error.call(this);
+  this.statusCode = 200;
+  this.message = message;
+  this.name = 'Logout';
+}
+
+util.inherits(NotFound, Error);
+
+function Revalidate(message) {
+  Error.call(this);
+  this.statusCode = 200;
+  this.message = message;
+  this.name = 'Revalidate';
+}
+
+util.inherits(NotFound, Error);
+
 /**
 * Export these errors for use throughout the app
 */
@@ -47,5 +65,7 @@ module.exports = {
   NotFound: NotFound,
   Success: Success,
   Unauthorized: Unauthorized,
-  Duplicate: Duplicate
+  Duplicate: Duplicate,
+  LogoutSuccess: LogoutSuccess,
+  Revalidate: Revalidate
 };

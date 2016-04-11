@@ -17,9 +17,10 @@ const v1handler = require('./v1');
 */
 const route = express.Router();
 
-route.get('/users', tChecker.checkToken, v1handler.allUsers);
+route.get('/users', v1handler.allUsers);
 route.delete('/users/:id', tChecker.checkToken, v1handler.removeUser);
 route.post('/login', v1handler.login);
 route.post('/users/register', tChecker.checkToken, v1handler.register);
+route.post('/logout', tChecker.checkToken, v1handler.logout);
 
 module.exports = route;
