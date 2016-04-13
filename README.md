@@ -2,7 +2,8 @@
 
 ## Description
 
-This API supports the following endpoints. Requests and responses are **JSON**. Currnet endpoiunt is version at /v1 as follows
+This API supports the following endpoints. Requests and responses are **JSON**. Currnet endpoint is versioned as /v1.
+Provide a Contetn-type Header on each request "Content-Type" : application/json
 
 GET '/v1/users'
 
