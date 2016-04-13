@@ -49,7 +49,7 @@ class Users {
 
     Actions.findById(id, (err, user) => {
       if (err) cb(err, null);
-      if (user === 'missing') {
+      if (user.message === 'No id found. Nothing to do') {
         let mes = new message.NotFound('No User');
         return cb(null, mes);
       }
@@ -95,6 +95,25 @@ class Users {
     let mes = new message.LogoutSuccess('Goodbye');
     return cb(null, mes);
   }
+
+  update(body, cb) {
+    let {name, password, id} = body;
+
+    Actions.findById(id, (err, user) => {
+      if (err) cb(err, null);
+
+      if (user.message === 'No id found. Nothing to do') {
+        let mes = new message.NotFound('No User');
+        return cb(null, mes);
+      }
+
+      user.name = name;
+      let mes = new message.Success(`Your name is now ${user.name}`);
+      cb(null, mes);
+    });
+
+  }
+
 
 }
 

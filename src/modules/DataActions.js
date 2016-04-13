@@ -33,7 +33,7 @@ var e = Actions.events = {
  * @param {Requester~requestCallback} cb - The callback that handles the response.
  */
 Actions.prototype.remove = function(id, cb) {
-  let checker = parseInt(id);
+  let checker = id;
 
   let check = this.checkForId(checker);
   if (check === 0) {
@@ -44,11 +44,11 @@ Actions.prototype.remove = function(id, cb) {
   }
 
   //mutate
-  this.people.users.forEach((n, index) => {
-    if (n.id === checker) {
-      this.people.users.splice( index, 1 );
-    }
-  });
+  // this.people.users.forEach((n, index) => {
+  //   if (n.id === checker) {
+  //     this.people.users.splice( index, 1 );
+  //   }
+  // });
 
   this.on('error', (err) => {
     console.error('Error:', err);
@@ -56,6 +56,11 @@ Actions.prototype.remove = function(id, cb) {
   });
 
   this.once(e.delete, (details) => {
+    this.people.users.forEach((n, index) => {
+      if (n.id == checker) {
+        this.people.users.splice( index, 1 );
+      }
+    });
     let mes = new message.Success(`The job finsihed on ${details.completedOn}`);
     cb(null, mes);
     this.removeAllListeners();
@@ -72,7 +77,9 @@ Actions.prototype.remove = function(id, cb) {
  */
 Actions.prototype.findById = function(id, cb) {
   //check is in use
-  let check = this.checkForId(parseInt(id));
+  //let check = this.checkForId(parseInt(id));
+  let check = this.checkForId(id);
+
   if (check === 0) {
     return setImmediate(function() {
       let mes = new message.NotFound('No id found. Nothing to do');

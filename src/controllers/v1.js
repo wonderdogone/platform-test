@@ -31,7 +31,7 @@ module.exports.register = (req, res, next) => {
   tokenCache.expired(res.locals, (err, feedback) => {
     if (err) return next(err);
     if (feedback === true) {
-      return res.status(400).send('YOu may need a new token');
+      return res.status(400).send('You may need a new token');
     }
     users.registerUser(req.body, (err, d) => {
       if (err) return next(err);
@@ -63,5 +63,21 @@ module.exports.logout = (req, res, next) => {
     if (err) return next(err);
     res.app.emit('hash:clean', 'Action: Start Cleaning Cache');
     res.status(200).send(d);
+  });
+};
+
+/** PUT Update user info */
+module.exports.update = (req, res, next) => {
+
+  tokenCache.expired(res.locals, (err, feedback) => {
+    if (err) return next(err);
+    if (feedback === true) {
+      return res.status(400).send('YOu may need a new token');
+    }
+    users.update(req.body, (err, d) => {
+      if (err) return next(err);
+      res.status(200).send(d);
+    });
+
   });
 };

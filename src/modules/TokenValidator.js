@@ -32,3 +32,13 @@ module.exports.checkToken = (req, res, next) => {
   });
 
 };
+
+module.exports.checkIfEmpty = (req, res, next) => {
+  if (Object.keys(req.body).length === 0) {
+    let mes = new message.EmptyRequest('Empty Request');
+    res.set('Content-Type', 'application/json');
+    return res.status(mes.statusCode).send(mes);
+  } else {
+    next();
+  }
+};

@@ -1,30 +1,22 @@
 {
 	"users": [{
 		"name": "Sam",
-		"id": 55,
-		"updatedBy": "admin",
-		"createdBy": "admin",
+		"id": "55",
 		"email": "somemail@someemail.com",
 		"password": "746952796540762876!@&@%^$!9E038410"
 	}, {
 		"name": "Tony",
-		"id": 56,
-		"updatedBy": "admin",
-		"createdBy": "admin",
+		"id": "56",
 		"email": "somemail@someemail.com",
 		"password": "746952796540762876!@&@%^$!9E038410"
 	}, {
 		"name": "Mel",
-		"id": 57,
-		"updatedBy": "admin",
-		"createdBy": "admin",
+		"id": "57",
 		"email": "somemail@someemail.com",
 		"password": "746952796540762876!@&@%^$!9E038410"
 	}, {
 		"name": "Kim",
-		"id": 58,
-		"updatedBy": "admin",
-		"createdBy": "admin",
+		"id": "58",
 		"email": "somemail@someemail.com",
 		"password": "746952796540762876!@&@%^$!9E038410"
 	}]
