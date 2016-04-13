@@ -2,8 +2,10 @@
 
 ## Description
 
-This API supports the following endpoints. Requests and responses are **JSON**. Current endpoint is versioned as /v1.
-Provide a Contetn-type Header on each request "Content-Type" : "application/json"
+This API supports the following endpoints: 
+- Requests and responses are **JSON** 
+- Current endpoint is versioned as /v1
+- Provide a Content-type header on each request "Content-Type" : "application/json"
 
 GET '/v1/users'
 
@@ -17,31 +19,33 @@ POST '/v1/users/register'
 
 POST '/v1/logout'
 
-Code base is wrriten in Node.js becasue it's performant while allowing for reusable "pieces" of code. Easily updated and familiar with developers.
+Code base is wrriten in Node.js because it is concurrent and allows for reusable "snippets" of code. It is easy to update and familiar to developers.
 
 ## Goals
-Keep it simple. Try and stay close to the Node API. Limit dependencies. No tricks.
+Simplicity. Maximum utilization of the Node API. Limit dependencies. No tricks.
 
 ## How to run this app?
-Simple. Grab the source code form this repo then.
+STEP 1:
+Grab the source code from this repo.
+
+STEP 2:
 ```
 cd platform-test
 npm install
 npm start
 ```
-
-In that order and you should have a running app. Most endpoints are protected so remeber to visit '/login' first with valid creds to get a token.
+Most endpoints are protected. Login at '/login' with valid credentials to receive a token.
 
 ## Notes
-
-Login requires a valid username and pasword in the request as follows
-```javascript
+Login requires a valid username and password in the following format:
+```
+javascript
 {"name":"Sam",
  "password":"746952796540762876!@&@%^$!9E038410",
- "id": 55
+ "id": "55"
 ```
 
-Once logged in the requester will recieve a valid token. (access_token). This token is requred for additinal requests to protected endpoints. Tokens expire in 1 hour. Refresh tokens in responses are just placeholder at this time.
+Once logged in the user recieves a valid token (access_token). This token is required for additional requests and it protects endpoints. Tokens expire in one hour. Refresh tokens in responses are placeholder at this time.
 
 DELETE '/v1/users/:id'
 
@@ -51,11 +55,10 @@ POST '/v1/users/register'
 
 POST '/v1/logout'
 
-**NOTE  GET '/users' is unprotected intentially for easy testing in this demo.**
+**NOTE  GET '/users' is unprotected intentionally. This provides a method to simplify testing in this demo.**
 
 ## Data
-To make it easier to run this application I have not included a traditional database but instead handle most of the data manipulation in memory in the DataActions object. This is only for this test and becasue the data is very limited.
-Cache of logged out token are also handled in app memeory but should really be independent in a memstore.
+ In order to provide the simplicity desired, data manipulation is handled in memory via the DataActions object. Since the data required for this test is limited, this method is most efficient. The cache of logged out tokens are currently handled in app memory but would ideally be independently handled in a memstore.
 
 ## Example requests
 POST '/v1/login'
@@ -86,7 +89,7 @@ PUT '/v1/users/:id'
  "id": "55"
 }
 ```
-POST '/v1/logout'  --  This is just to demonstrate revoking token and does not consider valid vs invalid users currently.
+POST '/v1/logout'  --  This demonstrates revoking a token. Currently, it does not consider valid versus invalid users.
 ```
 {"name":"Emanual",
  "password":"mypassword",
@@ -94,11 +97,10 @@ POST '/v1/logout'  --  This is just to demonstrate revoking token and does not c
 }
 ```
 
-
-
 **Additional Info**
 
-TODO refresh tokens should be issued.
-TODO Validate JOSN middleware
+TODO: 
+- Issue refresh tokens
+- Validate JSON middleware
 
 
