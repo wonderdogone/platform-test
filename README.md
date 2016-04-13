@@ -2,17 +2,17 @@
 
 ## Description
 
-This API supports the following endpoints. Requests and responses are **JSON**.
+This API supports the following endpoints. Requests and responses are **JSON**. Currnet endpoiunt is version at /v1 as follows
 
-GET '/users'
+GET '/v1/users'
 
-DELETE '/users/:id'
+DELETE '/v1/users/:id'
 
-POST '/login'
+POST '/v1/login'
 
-POST '/users/register'
+POST '/v1/users/register'
 
-POST '/logout'
+POST '/v1/logout'
 
 Code base is wrriten in Node.js becasue it's performant while allowing for reusable "pieces" of code. Easily updated and familiar with developers.
 
@@ -40,11 +40,11 @@ Login requires a valid username and pasword in the request as follows
 
 Once logged in the requester will recieve a valid token. (access_token). This token is requred for additinal requests to protected endpoints. Tokens expire in 1 hour. Refresh tokens in responses are just placeholder at this time.
 
-DELETE '/users/:id'
+DELETE '/v1/users/:id'
 
-POST '/users/register'
+POST '/v1/users/register'
 
-POST '/logout'
+POST '/v1/logout'
 
 **NOTE  GET '/users' is unprotected intentially for easy testing in this demo.**
 
