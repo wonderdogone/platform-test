@@ -2,12 +2,14 @@
 
 ## Description
 
-This API supports the following endpoints. Requests and responses are **JSON**. Currnet endpoint is versioned as /v1.
+This API supports the following endpoints. Requests and responses are **JSON**. Current endpoint is versioned as /v1.
 Provide a Contetn-type Header on each request "Content-Type" : "application/json"
 
 GET '/v1/users'
 
 DELETE '/v1/users/:id'
+
+PUT '/v1/users/:id'
 
 POST '/v1/login'
 
@@ -43,6 +45,8 @@ Once logged in the requester will recieve a valid token. (access_token). This to
 
 DELETE '/v1/users/:id'
 
+PUT '/v1/users/:id'
+
 POST '/v1/users/register'
 
 POST '/v1/logout'
@@ -52,6 +56,44 @@ POST '/v1/logout'
 ## Data
 To make it easier to run this application I have not included a traditional database but instead handle most of the data manipulation in memory in the DataActions object. This is only for this test and becasue the data is very limited.
 Cache of logged out token are also handled in app memeory but should really be independent in a memstore.
+
+## Example requests
+POST '/v1/login'
+```
+{"name":"Sam",
+ "password":"746952796540762876!@&@%^$!9E038410",
+ "id": "55"
+}
+```
+DELETE '/v1/users/:id'
+```
+{"name":"Trudy",
+ "password":"mypassword",
+ "email": "someil@someemail.com"
+}
+```
+POST '/v1/users/register'
+```
+{"name":"Emanual",
+ "password":"mypassword",
+ "email": "someil@someemail.com"
+}
+```
+PUT '/v1/users/:id'
+```
+{"name":"heather",
+ "password":"746952796540762876!@&@%^$!9E038410",
+ "id": "55"
+}
+```
+POST '/v1/logout'  --  This is just to demonstrate revoking token and does not consider valid vs invalid users currently.
+```
+{"name":"Emanual",
+ "password":"mypassword",
+ "email": "someil@someemail.com"
+}
+```
+
 
 
 **Additional Info**
